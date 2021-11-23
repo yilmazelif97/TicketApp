@@ -56,7 +56,6 @@ namespace TicketApp.Services
         
       
 
-        //ASSİGN TASK E TEKRAR BAK 
         public void AssignTask(Ticket ticket, string empid,Employee employee)
         {
 
