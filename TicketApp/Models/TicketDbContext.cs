@@ -19,7 +19,6 @@ namespace TicketApp.Models
         public DbSet<Customer> Customer {get;set;}
         public DbSet<Employee>  Employee { get; set; }
         public DbSet<Manager> Manager { get; set; }
-
         public DbSet<Ticket> Ticket { get; set; }
 
 

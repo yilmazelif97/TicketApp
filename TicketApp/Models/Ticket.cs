@@ -41,10 +41,10 @@ namespace TicketApp.Models
     public class Ticket
     {
 
-        public string Ticketno { get; private set; }
-        public StatusofTask status { get; private set; } 
-        public Priortiy Priortiy { get; private set; }
-        public LevelofDificulty LevelofDificulty { get; private set; }
+        public string Id { get;  set; }
+        public StatusofTask status { get;  set; } 
+        public Priortiy Priortiy { get;  set; }
+        public LevelofDificulty LevelofDificulty { get;  set; }
         public string Subject { get; private set; }
         public string Description { get; private set; }
         public DateTime OpenDate { get; set; }
@@ -55,12 +55,14 @@ namespace TicketApp.Models
         public Customer Customer { get; set; }
         public Employee Employee { get; set; }
 
+        public string EmployeeID { get; set; }
+
 
 
         public Ticket(string description, string subject)
         {
 
-            Ticketno = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid().ToString();
 
             status = StatusofTask.Open; //assigned default task status when it created
 
@@ -80,6 +82,24 @@ namespace TicketApp.Models
 
             Description = description;
         }
+
+        public void SetPriority(Priortiy p)
+        {
+            Priortiy = p;
+        }
+
+        public void SetDifficulty(LevelofDificulty l)
+        {
+            LevelofDificulty = l;
+        }
+
+        public void setClosedDate()
+        {
+
+        }
+
+
+        
 
 
 

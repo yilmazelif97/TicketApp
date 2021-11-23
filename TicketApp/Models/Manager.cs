@@ -8,14 +8,18 @@ namespace TicketApp.Models
     public class Manager
     {
 
-        public string ID { get;private  set; }
+        public string ID { get;  set; }
         public string Name { get; private set; }
+
+        public string EmployeId { get; set; }
         public Employee Employee { get;  set; }
 
-        public Manager()
+        public Manager(string name)
         {
             ID = Guid.NewGuid().ToString();
+            Name = name;
         }
+
 
     }
 }

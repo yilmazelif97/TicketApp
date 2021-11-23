@@ -8,15 +8,27 @@ namespace TicketApp.Repositories
 {
     public class EmployeeRepository
     {
-        void Find(string ıd)
-        {
 
+        private readonly TicketDbContext _db;
+
+        public Employee Find(string id)
+        {
+            return _db.Employee.Find(id);
         }
 
-        void Get(Employee employee)
-        {
 
+        public List<Employee> GetAll()
+        {
+            return _db.Employee.ToList();
         }
 
+        public void AssignTask(Employee employee) //update
+        {
+
+            _db.Employee.Update(employee);
+            _db.SaveChanges();
+        }
+
+     
     }
 }

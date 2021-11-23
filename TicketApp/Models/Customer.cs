@@ -8,7 +8,7 @@ namespace TicketApp.Models
     public class Customer
     {
 
-        public string ID { get; private set; }
+        public string ID { get;  set; }
         public string Name { get;private  set; }
         public string Mail { get;private set; }
 
@@ -19,6 +19,8 @@ namespace TicketApp.Models
             Mail = mail;
 
         }
+
+
 
     }
 }

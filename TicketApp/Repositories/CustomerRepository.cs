@@ -9,13 +9,17 @@ namespace TicketApp.Repositories
     public class CustomerRepository
     {
         private readonly TicketDbContext _db;
-        void Find(string Id)
+        
+
+        public Customer Find(string id)
         {
+            return _db.Customer.Find(id);
         }
 
-        void Get(Customer customer )
+        public List<Customer> GetAll()
         {
-
+            return _db.Customer.ToList();
         }
+       
     }
 }
