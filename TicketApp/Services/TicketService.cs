@@ -110,21 +110,19 @@ namespace TicketApp.Services
 
         }
 
-        public void SetPriority(Ticket ticket, Priortiy priority)
+        public void SetPriority(Ticket ticket)
         {
-            ticket.Priortiy = priority;
-
             _ticketRepository.Update(ticket);
         }
 
-        public void SetDifficulty(Ticket ticket, LevelofDificulty dificulty)
+        public void SetDifficulty(Ticket ticket)
         {
-            ticket.LevelofDificulty = dificulty;
 
             _ticketRepository.Update(ticket);
 
         }
 
+       
 
     }
 }

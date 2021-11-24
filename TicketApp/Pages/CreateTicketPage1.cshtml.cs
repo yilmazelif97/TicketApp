@@ -82,14 +82,14 @@ namespace TicketApp.Pages
 
                     var result = _ticketrepository.FindbyID(TicketInput.Id);
 
-                    var customermailto = _customerRepository.Find(TicketInput.Id.ToString());
+                    var customermail = _customerRepository.Find(selectedcustomerid.ToString());
 
 
                 if (result != null)
                     {
                         ViewData["Message"] = "Kayýt Baþarýlýdýr";
 
-                    _semdingmail.SendEmail(from:customermailto, to:selectedcustomerid, message:$"{TicketInput.Id}", subject: "Ticket ID");
+                        _semdingmail.SendEmail(from:"elifyilmaz587@gmail.com", to:customermail.Mail, message:$"{TicketInput.Id}", subject: "Ticket ID");
 
 
                     }

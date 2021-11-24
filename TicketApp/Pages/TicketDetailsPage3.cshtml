@@ -1,0 +1,54 @@
+﻿@page "{id}"
+@model TicketApp.Pages.TicketDetailsPage3Model
+@{
+    var id = long.Parse( (string)RouteData.Values["id"]);
+
+}
+
+
+<form>
+
+   <h3>Subject:</h3>
+    <input asp-for="TicketInput.Subject" />
+    <span></span>
+
+    <br />
+
+    <h3> Description: </h3>
+    <input asp-for="TicketInput.Description" />
+
+    <br /><br />
+
+    <h3>Customer: </h3>
+    <input asp-for="TicketInput.CustomerId" />
+
+    <form >
+        <p>Please select priority of task</p>
+           
+          <form method="SetPriorityandDifficulty">
+                 @foreach (var item in Model.listpriority )
+                    {
+                        <input type="radio" asp-for="TicketInput.Priortiy " value="@item" />@item <br />
+                     }
+
+                     @foreach (var item in Model.listdifficulty )
+                     {
+                        <input type="radio" asp-for="TicketInput.LevelofDificulty " value="@item" />@item <br />
+                     }
+             <input type="submit"/>
+          
+
+    
+        </form>
+
+
+
+
+
+    </form>
+
+   
+
+
+
+</form>

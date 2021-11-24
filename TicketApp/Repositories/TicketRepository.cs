@@ -40,13 +40,17 @@ namespace TicketApp.Repositories
 
         }
 
-        public Ticket FindbyStatus(string status)
+        public Ticket FindbyStatus(StatusofTask status)
         {
             return _db.Ticket.Find(status);
         }
 
-        
-       
+        public List<Ticket> Get()
+        {
+            return _db.Ticket.ToList();
+        }
+
+
 
     }
 }
