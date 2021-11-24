@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketApp.Models;
+using TicketApp.Repositories;
+using TicketApp.Services;
 
 namespace TicketApp
 {
@@ -27,10 +29,19 @@ namespace TicketApp
         {
             services.AddRazorPages();
 
-            services.AddDbContext<TicketDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+           
+
+            services.AddScoped<CustomerRepository>();
+            services.AddScoped<EmployeeRepository>();
+            services.AddScoped<TicketRepository>();
+
+            services.AddScoped<EmployeeService>();
+
+            services.AddScoped<TicketService>();
+
+
+
+
 
 
         }

@@ -11,6 +11,11 @@ namespace TicketApp.Repositories
 
         private readonly TicketDbContext _db;
 
+        public EmployeeRepository()
+        {
+            _db = new TicketDbContext();
+        }
+
         public Employee Find(string id)
         {
             return _db.Employee.Find(id);

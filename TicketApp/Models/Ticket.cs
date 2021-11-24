@@ -41,47 +41,26 @@ namespace TicketApp.Models
     public class Ticket
     {
 
-        public string Id { get;  set; }
+        public string Id { get;  set; } = Guid.NewGuid().ToString();
         public StatusofTask status { get;  set; } 
         public Priortiy Priortiy { get;  set; }
         public LevelofDificulty LevelofDificulty { get;  set; }
-        public string Subject { get; private set; }
-        public string Description { get; private set; }
+        public string Subject { get;  set; }
+        public string Description { get;  set; }
         public DateTime OpenDate { get; set; }
         public DateTime ClosedDate { get; set; }
         public DateTime ReviewDate { get; set; }
         public DateTime CompleteDate { get; set; }
         public DateTime AssignedDate { get; set; }
+        public string CustomerId { get; set; }
         public Customer Customer { get; set; }
-        public Employee Employee { get; set; }
 
         public string EmployeeID { get; set; }
+        public Employee Employee { get; set; }
 
 
 
-        public Ticket(string description, string subject)
-        {
 
-            Id = Guid.NewGuid().ToString();
-
-            status = StatusofTask.Open; //assigned default task status when it created
-
-            OpenDate = DateTime.Now;
-
-            if (subject.Length>50)
-            {
-                throw new Exception("You can not write subjet more than 50 character");
-            }
-
-            Subject = subject;
-
-            if (description.Length >500)
-            {
-                throw new Exception("You can not write description more than 500 character");
-            }
-
-            Description = description;
-        }
 
         public void SetPriority(Priortiy p)
         {

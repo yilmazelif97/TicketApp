@@ -9,11 +9,18 @@ namespace TicketApp.Models
     public class TicketDbContext : DbContext
     {
 
-
-        public TicketDbContext(DbContextOptions<TicketDbContext> options) : base(options)
+        public TicketDbContext()
         {
 
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server= . ;Database= TicketDB; uid=sa;pwd=1234 ;MultipleActiveResultSets=true");
+
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
 
         public DbSet<Customer> Customer {get;set;}

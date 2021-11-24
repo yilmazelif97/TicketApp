@@ -10,6 +10,12 @@ namespace TicketApp.Repositories
     {
         private readonly TicketDbContext _db;
 
+        public TicketRepository()
+        {
+            _db = new TicketDbContext();
+        }
+       
+
         public void AddTicket(Ticket ticket)
         {
             _db.Ticket.Add(ticket);
@@ -39,6 +45,7 @@ namespace TicketApp.Repositories
             return _db.Ticket.Find(status);
         }
 
+        
        
 
     }

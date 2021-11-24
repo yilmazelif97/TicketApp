@@ -4,19 +4,28 @@
 }
 
 
-<form  method="post">
+
+<form method="post">
+
+    <label>Enter Subject: </label><br>
+    <input asp-for="TicketInput.Subject" />
+    <span></span>
+
+    <br />
+
+    <label>Enter Description: </label>
+    <input asp-for="TicketInput.Description" />
+
+    <br /><br />
+
+    <label>Select Customer: </label>
+    <select asp-for="TicketInput.CustomerId" asp-items="Model.SelectListItems">
+    </select>
+
+    <div>
+        <button type="submit" asp-page-handler="CreateTicket"> Create Ticket </button>
+    </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-</form> 
+</form>

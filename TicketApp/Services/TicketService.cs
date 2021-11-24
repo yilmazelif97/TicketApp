@@ -19,7 +19,7 @@ namespace TicketApp.Services
         }
 
         
-        public void CreateTicket(Ticket ticket, Customer customer)
+        public void CreateTicket(Ticket ticket)
         {
 
             if (ticket == null)
@@ -27,18 +27,19 @@ namespace TicketApp.Services
                 throw new Exception("You have to create ticket");
             }
 
-            if (string.IsNullOrEmpty(ticket.Subject))
-            {
-                throw new Exception("You should write subject of ticket");
-            }
+         
 
             if (string.IsNullOrEmpty(ticket.Description))
             {
                 throw new Exception("You should write description of ticket");
 
             }
+            if (string.IsNullOrEmpty(ticket.Subject))
+            {
+                throw new Exception("You should write subject of ticket");
+            }
 
-            ticket.Customer = customer;
+           // ticket.CustomerId = id.ToString();
 
 
             _ticketRepository.AddTicket(ticket);
