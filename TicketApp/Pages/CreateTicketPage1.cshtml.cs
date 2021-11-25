@@ -35,7 +35,7 @@ namespace TicketApp.Pages
 
         public Ticket TicketInput { get; set; }
 
-
+        [BindProperty]
         public Employee EmployeeInput { get; set; }
 
         public Customer CustomerInput { get; set; }
@@ -79,6 +79,8 @@ namespace TicketApp.Pages
                     TicketInput.status = StatusofTask.Open;
 
                     _ticketservice.CreateTicket(TicketInput);
+
+                    EmployeeInput.Ticket.Add(TicketInput);
 
                     var result = _ticketrepository.FindbyID(TicketInput.Id);
 

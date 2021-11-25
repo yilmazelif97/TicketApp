@@ -27,7 +27,7 @@ namespace TicketApp.Repositories
             return _db.Employee.ToList();
         }
 
-        public void AssignTask(Employee employee) //update
+        public void Update(Employee employee) //update
         {
 
             _db.Employee.Update(employee);

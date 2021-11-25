@@ -50,23 +50,23 @@
 
             <p>Please select priority of task</p>
 
-            @foreach (var item in Model.pri)
+            @foreach (var item in Enum.GetValues(typeof(Models.LevelofDificulty )) )
             {
-                <input type="radio" asp-for="priority" value="@item"  />@item <br />
+                @Html.RadioButtonFor(m => m.DifficultlyLevel, item) @item
             }
 
-            <br /><br />
-
-            <p>Please select difficulty of task</p>
-
-            @foreach (var item in Model.dif)
-            {
-                <input type="radio" asp-for="diff " value="@item"  />@item <br />
-            }
-
-
-            <input type="submit" value="Save" asp-page-handler="Save" >  Set Priority / Difficulty </input>
             
+            
+            <p>Please select priority of task</p>
+
+            @foreach (var item in Enum.GetValues(typeof(Models.Priortiy )) )
+            {
+                @Html.RadioButtonFor(m => m.priority, item) @item
+            }
+
+             <input type="submit" value="Seçimi Onayla" asp-page-handler="SetDifficultLevelandPriority">
+   
+            <br /><br />
 
 
         

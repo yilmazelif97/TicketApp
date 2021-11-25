@@ -14,7 +14,9 @@ namespace TicketApp.Models
         Closed=2,
         Assigned=3,
         Review=4,
-        Complete=5
+        Complete=5,
+        Readyforassignment=6
+         
     }
 
     public enum LevelofDificulty 

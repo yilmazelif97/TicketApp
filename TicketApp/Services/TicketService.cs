@@ -76,6 +76,7 @@ namespace TicketApp.Services
 
 
             int count = 0;
+            int count2 = 0;
 
             foreach (var item in emp.Ticket)
             {
@@ -93,6 +94,16 @@ namespace TicketApp.Services
 
                 }
 
+                if (item.Priortiy == Priortiy.Four || item.Priortiy == Priortiy.Five)
+                {
+                    count2 += 1;
+
+                    if (count2==5)
+                    {
+                        throw new Exception("You can not aissgn task to this employee. Already has 4 priority rank 4-5 task");
+                    }
+                }
+
                 if (emp.WorkHours > 160)
                 {
                     throw new Exception("You can not assign task to this employee. His/Her Work hours is full");
@@ -101,11 +112,11 @@ namespace TicketApp.Services
                 }
 
                 emp.Ticket.Add(ticket);
-                _employeeRepository.AssignTask(emp);
+                _employeeRepository.Update(emp);
 
             }
 
-            ticket.EmployeeID = empid;
+           // ticket.EmployeeID = empid;
             _ticketRepository.Update(ticket);
 
         }
@@ -120,6 +131,35 @@ namespace TicketApp.Services
         {
             ticket.LevelofDificulty = dif;
             _ticketRepository.Update(ticket);
+
+        }
+
+        public void SetWorkHours(Employee employee, Ticket ticket)
+        {
+            int workhour = employee.WorkHours;
+
+            if ((int)ticket.Priortiy ==5 )
+            {
+                workhour = 8 * 5;
+            }
+
+            if ((int)ticket.Priortiy == 4)
+            {
+                workhour = 8 * 4;
+            }
+            if ((int)ticket.Priortiy == 3)
+            {
+                workhour = 8 * 3;
+            }
+            if ((int)ticket.Priortiy == 2)
+            {
+                workhour = 8 * 2;
+            }
+            if ((int)ticket.Priortiy == 1)
+            {
+                workhour = 8 * 1;
+            }
+
 
         }
 

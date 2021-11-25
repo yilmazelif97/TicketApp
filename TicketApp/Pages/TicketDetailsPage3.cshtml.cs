@@ -75,14 +75,11 @@ namespace TicketApp.Pages
         [BindProperty]
         public Priortiy priority { get; set; }
 
-        [BindProperty]
-        public LevelofDificulty diff { get; set; }
+        
 
         [BindProperty]
-        public List<Priortiy> pri { get; set; }
+        public LevelofDificulty DifficultlyLevel { get; set; }
 
-        [BindProperty]
-        public List<LevelofDificulty> dif { get; set; }
 
 
         public void OnGet(string id)
@@ -98,19 +95,15 @@ namespace TicketApp.Pages
         }
 
 
-        public void OnPostSave(string id, Priortiy p, LevelofDificulty l)
+        public void OnPostSetDifficultLevelandPriority(string id, Priortiy p, LevelofDificulty l)
         {
 
-            Enum.GetValues(typeof(Priortiy)).Cast<int>();
-
-            Enum.GetValues(typeof(LevelofDificulty)).Cast<int>();
+            
 
             ID = id;
 
             priority = p;
-            diff = l;
-
-
+            DifficultlyLevel = l;
 
 
             TicketInput = _ticketrepository.FindbyID(id);
@@ -119,11 +112,15 @@ namespace TicketApp.Pages
 
             _ticketservice.SetDifficulty(TicketInput,l);  //Update difficulty of task
 
-            TicketInput.status = StatusofTask.Assigned;
+            TicketInput.status = StatusofTask.Readyforassignment;
 
         }
 
-        
+       
+
+
+
+
 
     }
 }
