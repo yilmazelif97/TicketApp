@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TicketApp.Models;
 using TicketApp.Repositories;
 using TicketApp.Services;
@@ -18,7 +19,7 @@ namespace TicketApp.Pages
         private readonly CustomerRepository _customerRepository;
         private readonly SendingEmail _semdingmail;
 
-        public TicketDetailsPage3Model(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
+        public TicketDetailsPage3Model(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email )
         {
             _ticketrepository = tickerrepo;
             _ticketservice = ticketservice;
@@ -26,6 +27,8 @@ namespace TicketApp.Pages
             _employerepository = emprepo;
             _customerRepository = cusrepo;
             _semdingmail = email;
+
+
         }
 
         [BindProperty]
@@ -50,21 +53,36 @@ namespace TicketApp.Pages
         [BindProperty]
         public List<Ticket> OpenTickets { get; set; }
 
+        
+        
+
+
+        //public Array listpriority = Enum.GetValues(typeof (Priortiy));
+
+        //public Array listdifficulty = Enum.GetValues(typeof(LevelofDificulty));
+
+
         //gelen id yi tutabilmek için
         [BindProperty]
         public string ID { get; set; }
 
         [BindProperty]
-        public string Gender { get; set; }
+        public string idofcustomer { get; set; }
+
+        [BindProperty]
+        public string Nameofcustomer { get; set; }
 
         [BindProperty]
         public Priortiy priority { get; set; }
 
-        public Array listpriority = Enum.GetValues(typeof (Priortiy));
+        [BindProperty]
+        public LevelofDificulty diff { get; set; }
 
-        public Array listdifficulty = Enum.GetValues(typeof(LevelofDificulty));
+        [BindProperty]
+        public List<Priortiy> pri { get; set; }
 
-
+        [BindProperty]
+        public List<LevelofDificulty> dif { get; set; }
 
 
         public void OnGet(string id)
@@ -73,16 +91,33 @@ namespace TicketApp.Pages
 
             TicketInput = _ticketrepository.FindbyID(id);
 
+            //idofcustomer = TicketInput.CustomerId.ToString();
+
+            //Nameofcustomer = _customerRepository.Find(idofcustomer).ToString();
 
         }
 
 
-        public void OnPostSetPriorityandDifficulty()
+        public void OnPostSave(string id, Priortiy p, LevelofDificulty l)
         {
 
-            _ticketservice.SetPriority(TicketInput);  //Update priority of task
+            Enum.GetValues(typeof(Priortiy)).Cast<int>();
 
-            _ticketservice.SetDifficulty(TicketInput);  //Update difficulty of task
+            Enum.GetValues(typeof(LevelofDificulty)).Cast<int>();
+
+            ID = id;
+
+            priority = p;
+            diff = l;
+
+
+
+
+            TicketInput = _ticketrepository.FindbyID(id);
+
+            _ticketservice.SetPriority(TicketInput,p);  //Update priority of task
+
+            _ticketservice.SetDifficulty(TicketInput,l);  //Update difficulty of task
 
             TicketInput.status = StatusofTask.Assigned;
 

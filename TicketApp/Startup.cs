@@ -38,7 +38,7 @@ namespace TicketApp
             services.AddScoped<EmployeeService>();
 
             services.AddScoped<TicketService>();
-
+            services.AddScoped<SendingEmail>();
 
 
 

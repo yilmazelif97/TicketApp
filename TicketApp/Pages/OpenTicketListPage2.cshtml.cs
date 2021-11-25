@@ -18,15 +18,7 @@ namespace TicketApp.Pages
         private readonly CustomerRepository _customerRepository;
         private readonly SendingEmail _semdingmail;
 
-        public OpenTicketListPage2Model(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
-        {
-            _ticketrepository = tickerrepo;
-            _ticketservice = ticketservice;
-            _employeeservice = employeservice;
-            _employerepository = emprepo;
-            _customerRepository = cusrepo;
-            _semdingmail = email;
-        }
+      
 
         [BindProperty]
 
@@ -50,6 +42,19 @@ namespace TicketApp.Pages
         [BindProperty]
         public List<Ticket> OpenTickets { get; set; }
 
+        public OpenTicketListPage2Model(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
+        {
+            _ticketrepository = tickerrepo;
+            _ticketservice = ticketservice;
+            _employeeservice = employeservice;
+            _employerepository = emprepo;
+            _customerRepository = cusrepo;
+            _semdingmail = email;
+
+            OpenTickets = new List<Ticket>();
+
+        }
+
 
 
 
@@ -60,20 +65,18 @@ namespace TicketApp.Pages
 
             Tickets = _ticketrepository.Get();
 
-            foreach (var item in Tickets)
+            if (Tickets.Count != 0)
             {
-                if (item.status == StatusofTask.Open)
+                foreach (var item in Tickets)
                 {
-                    OpenTickets.Add(item);
+                    if (item.status == StatusofTask.Open)
+                    {
+                        OpenTickets.Add(item);
+                    }
                 }
             }
 
-            if (OpenTickets == null)
-            {
-                throw new System.Exception("Ticket table is empty. Enter new task");
-            }
-
-
+           
         }
 
         public void OnPostSetTech()

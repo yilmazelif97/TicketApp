@@ -1,54 +1,79 @@
 ﻿@page "{id}"
 @model TicketApp.Pages.TicketDetailsPage3Model
 @{
-    var id = long.Parse( (string)RouteData.Values["id"]);
+    //var id = long.Parse( (string)RouteData.Values["id"]);
 
 }
 
 
-<form>
 
-   <h3>Subject:</h3>
-    <input asp-for="TicketInput.Subject" />
-    <span></span>
 
-    <br />
+    <table border="1" width="100%">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Customer Name </th>
+            </tr>
+        </thead>
+        <tbody>
 
-    <h3> Description: </h3>
-    <input asp-for="TicketInput.Description" />
 
-    <br /><br />
+            <tr>
+                <td>
+                    <input asp-for="TicketInput.Subject" />
+                    <span></span>
+                </td>
+                <td>
+                    <input asp-for="TicketInput.Description" />
+                </td>
+                <td>
+                    <input asp-for="TicketInput.OpenDate" />
+                </td>
 
-    <h3>Customer: </h3>
-    <input asp-for="TicketInput.CustomerId" />
+                <td>
 
-    <form >
-        <p>Please select priority of task</p>
-           
-          <form method="SetPriorityandDifficulty">
-                 @foreach (var item in Model.listpriority )
-                    {
-                        <input type="radio" asp-for="TicketInput.Priortiy " value="@item" />@item <br />
-                     }
-
-                     @foreach (var item in Model.listdifficulty )
-                     {
-                        <input type="radio" asp-for="TicketInput.LevelofDificulty " value="@item" />@item <br />
-                     }
-             <input type="submit"/>
-          
-
-    
-        </form>
+                    <input asp-for="TicketInput.CustomerId" />
+                </td>
 
 
 
+</tbody>
 
+
+
+    </table>
+    <form method="post">
+
+        
+
+            <p>Please select priority of task</p>
+
+            @foreach (var item in Model.pri)
+            {
+                <input type="radio" asp-for="priority" value="@item"  />@item <br />
+            }
+
+            <br /><br />
+
+            <p>Please select difficulty of task</p>
+
+            @foreach (var item in Model.dif)
+            {
+                <input type="radio" asp-for="diff " value="@item"  />@item <br />
+            }
+
+
+            <input type="submit" value="Save" asp-page-handler="Save" >  Set Priority / Difficulty </input>
+            
+
+
+        
 
     </form>
 
-   
 
 
 
-</form>
+

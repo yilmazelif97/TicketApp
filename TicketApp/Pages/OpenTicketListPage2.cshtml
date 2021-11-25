@@ -8,10 +8,6 @@
     
 
 
-    <div>
-        <button asp-page-handler="SetTech">Set Tech Detail</button>
-    </div>
-
 
     <table border="1" width="100%">
         <thead>
@@ -23,27 +19,29 @@
         </thead>
         <tbody>
             @* form içerisinden birden fazla veri gönderdiğimizde index mekanizmasını kullanırız. bu sebep ile foreach yerine for kullandık *@
-            @for (int i = 0; i < Model.OpenTickets.Count ; i++)
+
+        
+
+            @for (int i = 0; i < Model.OpenTickets.Count; i++)
             {
-                <tr>
-                    <td>
-                        <input asp-for="OpenTickets[i].Subject " type="text" placeholder="Subject" />
-                    </td>
-                    <td>
-                        <input asp-for="OpenTickets[i].Description" placeholder="Description" />
-                    </td>
-                    <td>
-                        <input asp-for="OpenTickets[i].OpenDate " placeholder="Date of Created" />
-                    </td>
+            <tr>
+                <td>
+                    <input asp-for="OpenTickets[i].Subject " type="text" placeholder="Subject" />
+                </td>
+                <td>
+                    <input asp-for="OpenTickets[i].Description" placeholder="Description" />
+                </td>
+                <td>
+                    <input asp-for="OpenTickets[i].OpenDate " placeholder="Date of Created" />
+                </td>
 
-                </tr>
+                <td>
+                    <a asp-page="./TicketDetailsPage3" asp-route-id="@Model.OpenTickets[i].Id "> Set Tech Detail</a>
+                </td>
+
+            </tr>
 
 
-               <div>
-                    <td>
-                          <a asp-page="TicketDetailPage3" asp-route-id="Model.OpenTickets[i].Id " > Set Tech Detail</a>
-                  </td>
-               </div>
             }
 
             
