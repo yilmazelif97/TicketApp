@@ -49,6 +49,9 @@ namespace TicketApp.Pages
         [BindProperty]
         public string ID { get; set; }
 
+        [BindProperty]
+        public SelectListItem dene { get; set; }
+
 
 
         public AssignedTaskModel(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
@@ -104,7 +107,9 @@ namespace TicketApp.Pages
         public void OnPostSave( )
         {
 
-           OpenTickets.
+
+            dene.Value();
+
 
             TicketInput = _ticketrepository.FindbyID(id);
 
