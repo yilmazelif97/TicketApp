@@ -50,7 +50,13 @@ namespace TicketApp.Pages
         public string ID { get; set; }
 
         [BindProperty]
+        public string TicketID { get; set; }
+
+        [BindProperty]
         public SelectListItem dene { get; set; }
+
+        [BindProperty]
+        public SelectList selectlist { get; set; }
 
 
 
@@ -100,28 +106,33 @@ namespace TicketApp.Pages
 
             
 
+            
+
 
         }
 
         //Assigned iþþemini yapýyor employe ye sonra save ediyor.
-        public void OnPostSave( )
+        public void OnPostSave(string id , string ticketid)
         {
 
+            // gelen id employee id si
+            ID = id;
 
-            dene.Value();
+            TicketID = ticketid;
 
 
-            TicketInput = _ticketrepository.FindbyID(id);
+            TicketInput = _ticketrepository.FindbyID(ticketid); 
 
-            var emp = _ticketrepository.FindbyID(id).EmployeeID;
+            //var emp = _ticketrepository.FindbyID(id).EmployeeID; 
 
-            EmployeeInput = _employerepository.Find(emp);
+            EmployeeInput = _employerepository.Find(id);
 
             TicketInput.AssignedDate = DateTime.Now.Date;
 
-           
 
-            _ticketservice.AssignTask(ticket:TicketInput , empid: TicketInput.EmployeeID, employee:EmployeeInput);
+            _ticketservice.UpdateTicketEmployeeid(TicketInput, id);          
+
+            _ticketservice.AssignTask(ticket:TicketInput , empid: EmployeeInput.Id, employee:EmployeeInput);
 
             _ticketservice.SetWorkHours(employee: EmployeeInput, ticket: TicketInput);
 

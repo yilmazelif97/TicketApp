@@ -163,6 +163,48 @@ namespace TicketApp.Services
 
             workhour = employee.WorkHours;
 
+            _employeeRepository.Update(employee);
+
+
+        }
+
+        public void UpdateTicketEmployeeid(Ticket ticket, string id)
+        {
+            ticket.EmployeeID = id;
+            _ticketRepository.Update(ticket);
+
+        }
+
+        public void CloseTask(Ticket ticket)
+        {
+            ticket.ClosedDate = DateTime.Now.Date;
+
+            ticket.status = StatusofTask.Closed;
+
+
+           
+
+            _ticketRepository.Update(ticket);
+
+
+
+        }
+
+        public void ReviewTask(Ticket ticket)
+        {
+            ticket.status = StatusofTask.Review;
+            ticket.ReviewDate = DateTime.Now.Date;
+
+            _ticketRepository.Update(ticket);
+
+        }
+
+        public void CompleteTask(Ticket ticket)
+        {
+            ticket.status = StatusofTask.Completed;
+            ticket.CompleteDate = DateTime.Now.Date;
+
+            _ticketRepository.Update(ticket);
 
         }
 

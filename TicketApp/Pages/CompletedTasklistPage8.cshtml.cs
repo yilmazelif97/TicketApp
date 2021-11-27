@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using TicketApp.Models;
 using TicketApp.Repositories;
@@ -8,7 +7,7 @@ using TicketApp.Services;
 
 namespace TicketApp.Pages
 {
-    public class AssignedTasksListPage5Model : PageModel
+    public class CompletedTasklistPage8Model : PageModel
     {
 
         private readonly TicketService _ticketservice;
@@ -31,7 +30,6 @@ namespace TicketApp.Pages
 
         public Customer displayCustomer { get; set; }
 
-        public List<SelectListItem> SelectListItems = new List<SelectListItem>();
 
         [BindProperty]
         public string selectedcustomerid { get; set; }
@@ -47,7 +45,7 @@ namespace TicketApp.Pages
 
 
 
-        public AssignedTasksListPage5Model(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
+        public CompletedTasklistPage8Model(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
         {
             _ticketrepository = tickerrepo;
             _ticketservice = ticketservice;
@@ -64,33 +62,24 @@ namespace TicketApp.Pages
 
         public void OnGet()
         {
+
             Tickets = _ticketrepository.Get();
 
             if (Tickets.Count != 0)
             {
                 foreach (var item in Tickets)
                 {
-                    if (item.status == StatusofTask.Assigned)
+                    if (item.status == StatusofTask.Completed)
                     {
                         OpenTickets.Add(item);
                     }
                 }
             }
 
-
         }
 
-        public void OnPostCloseTask(string id)
-        {
 
-            ID = id;
+      
 
-            TicketInput = _ticketrepository.FindbyID(id);
-
-            EmployeeInput = _employerepository.Find(TicketInput.CustomerId);
-
-            _ticketservice.CloseTask(ticket: TicketInput);
-
-        }
     }
 }

@@ -1,14 +1,10 @@
 ﻿@page
-@model TicketApp.Pages.AssignedTasksListPage5Model
+@model TicketApp.Pages.CompletedTasklistPage8Model
 @{
 }
 
 
-
-<form method="post">
-
-
-    <table border="1" width="100%">
+ <table border="1" width="100%">
         <thead>
             <tr>
                 <th>Subject</th>
@@ -25,25 +21,15 @@
             {
             <tr>
                 <td>
-                    <input asp-for="OpenTickets[i].Subject " type="text" placeholder="Subject" />
+                    <input asp-for="OpenTickets[i].Id " type="text" placeholder="Subject" />
                 </td>
                 <td>
                     <input asp-for="OpenTickets[i].Description" placeholder="Description" />
                 </td>
                 <td>
-                    <input asp-for="OpenTickets[i].CustomerId " placeholder="Difficulty Level" />
+                    <input asp-for="OpenTickets[i].CompleteDate " placeholder="Difficulty Level" />
                 </td>
-                 <td>
-                    <input asp-for="OpenTickets[i].AssignedDate " placeholder="Difficulty Level" />
-                </td>
-
-                 <td>
-                    <button type="submit" asp-route-id="@Model.OpenTickets[i].Id" asp-page-handler="CloseTask"> Close task </button>
-                 </td>
                 
-                
-               
-
                 
 
 
@@ -57,5 +43,3 @@
 
         </tbody>
     </table>
-
-    </form>

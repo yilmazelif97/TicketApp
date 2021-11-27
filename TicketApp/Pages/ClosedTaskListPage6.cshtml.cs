@@ -1,15 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
 using TicketApp.Models;
 using TicketApp.Repositories;
 using TicketApp.Services;
 
 namespace TicketApp.Pages
 {
-    public class AssignedTasksListPage5Model : PageModel
+    public class ClosedTaskModel : PageModel
     {
+
 
         private readonly TicketService _ticketservice;
         private readonly EmployeeService _employeeservice;
@@ -47,7 +51,7 @@ namespace TicketApp.Pages
 
 
 
-        public AssignedTasksListPage5Model(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
+        public ClosedTaskModel(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
         {
             _ticketrepository = tickerrepo;
             _ticketservice = ticketservice;
@@ -61,7 +65,6 @@ namespace TicketApp.Pages
         }
 
 
-
         public void OnGet()
         {
             Tickets = _ticketrepository.Get();
@@ -70,17 +73,16 @@ namespace TicketApp.Pages
             {
                 foreach (var item in Tickets)
                 {
-                    if (item.status == StatusofTask.Assigned)
+                    if (item.status == StatusofTask.Closed)
                     {
                         OpenTickets.Add(item);
                     }
                 }
             }
 
-
         }
 
-        public void OnPostCloseTask(string id)
+        public void OnPostReviewTask(string id)
         {
 
             ID = id;
@@ -89,8 +91,23 @@ namespace TicketApp.Pages
 
             EmployeeInput = _employerepository.Find(TicketInput.CustomerId);
 
-            _ticketservice.CloseTask(ticket: TicketInput);
+            _ticketservice.ReviewTask(ticket: TicketInput);
 
         }
+
+        public void OnPostCompleteTask(string id)
+        {
+
+
+            ID = id;
+
+            TicketInput = _ticketrepository.FindbyID(id);
+
+            EmployeeInput = _employerepository.Find(TicketInput.CustomerId);
+
+            _ticketservice.CompleteTask(ticket: TicketInput);
+
+        }
+
     }
 }

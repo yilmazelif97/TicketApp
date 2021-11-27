@@ -14,7 +14,7 @@ namespace TicketApp.Models
         Closed=2,
         Assigned=3,
         Review=4,
-        Complete=5,
+        Completed=5,
         Readyforassignment=6
          
     }
