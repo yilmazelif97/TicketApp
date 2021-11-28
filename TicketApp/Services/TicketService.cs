@@ -13,9 +13,10 @@ namespace TicketApp.Services
         EmployeeRepository _employeeRepository;
 
 
-        public TicketService(TicketRepository ticketrepository)
+        public TicketService(TicketRepository ticketrepository,EmployeeRepository employeeRepository)
         {
             _ticketRepository = ticketrepository;
+            _employeeRepository = employeeRepository;
         }
 
         
@@ -55,13 +56,14 @@ namespace TicketApp.Services
             _ticketRepository.Update(ticket);
 
         }
-        
-      
+
+        public List<Ticket> ticketList { get; set; } = new List<Ticket>();
+        public Employee emp { get; set; }
 
         public void AssignTask(Ticket ticket, string empid,Employee employee)
         {
 
-            var emp = _employeeRepository.Find(empid);
+            emp = _employeeRepository.Find(empid);
 
            
             if (((ticket.LevelofDificulty) == default(LevelofDificulty)))
@@ -78,56 +80,64 @@ namespace TicketApp.Services
 
             int count = 0;
             int count2 = 0;
-
-            foreach (var item in emp.Ticket)
+            ticketList = emp.Ticket;
+            if (ticketList != null)
             {
-                if ( item.LevelofDificulty == LevelofDificulty.Hard )
+                foreach (var item in ticketList)
                 {
-                 
-                    count += 1;
-
-
-                    if (count==3 )
+                    if (item.LevelofDificulty == LevelofDificulty.Hard)
                     {
-                        throw new Exception("You can not assign task to this employee. Already has 3 Hard Task");
+
+                        count += 1;
+
+
+                        if (count == 3)
+                        {
+                            throw new Exception("You can not assign task to this employee. Already has 3 Hard Task");
+                        }
+
+                        if (item.OpenDate > DateTime.Now.Date)
+                        {
+                            throw new Exception("You can not assign task to this employee. Already has 3 Hard Task in ONE month");
+                        }
+
+
+
                     }
 
-                    if (item.OpenDate > DateTime.Now.Date)
+                    if (item.Priortiy == Priortiy.Four || item.Priortiy == Priortiy.Five)
                     {
-                        throw new Exception("You can not assign task to this employee. Already has 3 Hard Task in ONE month");
+                        count2 += 1;
+
+                        if (item.OpenDate > DateTime.Now.Date)
+                        {
+                            throw new Exception("You can not assign task to this employee. Already has 3 Hard Task in ONE month");
+                        }
+
+                        if (count2 == 5)
+                        {
+                            throw new Exception("You can not aissgn task to this employee. Already has 4 priority rank 4-5 task");
+                        }
                     }
 
+                    if (emp.WorkHours > 160 || item.OpenDate > DateTime.Now.Date)
+                    {
 
+                        throw new Exception("You can not assign task to this employee. His/Her Work hours is full");
+
+
+                    }
+
+                    ticketList.Add(ticket);
+                    emp.Ticket = ticketList;
+                    _employeeRepository.Update(emp);
 
                 }
-
-                if (item.Priortiy == Priortiy.Four || item.Priortiy == Priortiy.Five)
-                {
-                    count2 += 1;
-
-                    if (item.OpenDate > DateTime.Now.Date)
-                    {
-                        throw new Exception("You can not assign task to this employee. Already has 3 Hard Task in ONE month");
-                    }
-
-                    if (count2==5)
-                    {
-                        throw new Exception("You can not aissgn task to this employee. Already has 4 priority rank 4-5 task");
-                    }
-                }
-
-                if (emp.WorkHours > 160 || item.OpenDate > DateTime.Now.Date)
-                {
-
-                    throw new Exception("You can not assign task to this employee. His/Her Work hours is full");
-
-
-                }
-
-                emp.Ticket.Add(ticket);
+                ticketList.Add(ticket);
+                emp.Ticket = ticketList;
                 _employeeRepository.Update(emp);
-
             }
+            
 
            // ticket.EmployeeID = empid;
             _ticketRepository.Update(ticket);

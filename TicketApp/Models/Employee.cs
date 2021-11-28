@@ -10,18 +10,12 @@ namespace TicketApp.Models
 
         //Employee Entity
 
-        public string Id { get;  set; }
+        public string Id { get;  set; } = Guid.NewGuid().ToString();
         public string Name { get;  set; }
         public string Mail { get;   set; }
         public List<Ticket> Ticket  { get; set; }
         public int WorkHours { get; set; } = 0;
 
-        public Employee(string name, string mail)
-        {
-            Id = Guid.NewGuid().ToString();
-            Name = name;
-            Mail = mail;
-        }
 
         //public void SetTickettoEmp(Ticket ticket)
         //{

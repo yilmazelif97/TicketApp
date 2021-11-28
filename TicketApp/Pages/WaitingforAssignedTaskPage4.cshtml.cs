@@ -34,6 +34,7 @@ namespace TicketApp.Pages
 
         public Customer displayCustomer { get; set; }
 
+
         public List<SelectListItem> SelectListItems = new List<SelectListItem>();
 
         [BindProperty]
@@ -43,7 +44,7 @@ namespace TicketApp.Pages
         public List<Ticket> Tickets { get; set; }
 
         [BindProperty]
-        public List<Ticket> OpenTickets { get; set; }
+        public List<Ticket> OpenTickets { get; set; } = new List<Ticket>();
 
         [BindProperty]
         public string ID { get; set; }
@@ -51,11 +52,7 @@ namespace TicketApp.Pages
         [BindProperty]
         public string TicketID { get; set; }
 
-        [BindProperty]
-        public SelectListItem dene { get; set; }
 
-        [BindProperty]
-        public SelectList selectlist { get; set; }
 
 
 
@@ -68,7 +65,7 @@ namespace TicketApp.Pages
             _customerRepository = cusrepo;
             _semdingmail = email;
 
-            OpenTickets = new List<Ticket>();
+
 
         }
 
@@ -121,6 +118,7 @@ namespace TicketApp.Pages
             EmployeeInput = _employerepository.Find(id);
 
             TicketInput.AssignedDate = DateTime.Now.Date;
+            TicketInput.status = StatusofTask.Assigned;
 
 
             _ticketservice.UpdateTicketEmployeeid(TicketInput, id);      // ticketa employee id atamasý yaptý     

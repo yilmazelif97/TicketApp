@@ -93,7 +93,7 @@ namespace TicketApp.Pages
 
             _ticketservice.ReviewTask(ticket: TicketInput);
 
-            _semdingmail.SendEmail(from: "elif@gmail.com", to: EmployeeInput.Mail. , message: $"{ TicketInput.Id} nolu Task Completed Task olarak atanmýþtýr", subject: TicketInput.Subject);
+            _semdingmail.SendEmail(from: "elif@gmail.com", to: EmployeeInput.Mail, message: $"{ TicketInput.Id} nolu Task Completed Task olarak atanmýþtýr", subject: TicketInput.Subject);
 
 
         }
@@ -113,7 +113,7 @@ namespace TicketApp.Pages
             var customer = _customerRepository.Find(TicketInput.CustomerId);
 
 
-            _semdingmail.SendEmail(from: "elif@gmail.com", to: customer.Mail. , message: $"{ TicketInput.Id} nolu Task Completed Task olarak atanmýþtýr", subject: TicketInput.Subject);
+            _semdingmail.SendEmail(from: "elif@gmail.com", to: customer.Mail, message: $"{ TicketInput.Id} nolu Task Completed Task olarak atanmýþtýr", subject: TicketInput.Subject);
 
 
         }

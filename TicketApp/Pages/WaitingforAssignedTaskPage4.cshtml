@@ -51,7 +51,7 @@
                         @Html.DropDownListFor(x=>x.ID , Model.SelectListItems ) @*@Model.OpenTickets[i].Id*@
 
 
-                        <input type="submit" value="Save" asp-page-handler="Save" asp-route-id="@Model.OpenTickets[i].Id" />
+                        <input type="submit" value="Save" asp-page-handler="Save" asp-route-ticketId="@Model.OpenTickets[i].Id" />
 
                        @*  <select asp-for="OpenTickets[i].EmployeeID" asp-items="Model.SelectListItems" onchange="Save" >
                          </select>*@
