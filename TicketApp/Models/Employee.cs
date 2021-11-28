@@ -14,7 +14,7 @@ namespace TicketApp.Models
         public string Name { get;  set; }
         public string Mail { get;   set; }
         public List<Ticket> Ticket  { get; set; }
-        public int WorkHours { get;  set; }
+        public int WorkHours { get; set; } = 0;
 
         public Employee(string name, string mail)
         {
@@ -23,15 +23,15 @@ namespace TicketApp.Models
             Mail = mail;
         }
 
-        public void SetTickettoEmp(Ticket ticket)
-        {
-            Ticket.Add(ticket);
-        }
+        //public void SetTickettoEmp(Ticket ticket)
+        //{
+        //    Ticket.Add(ticket);
+        //}
 
-        public void SetWorkHours(int hours)
-        {
-            this.WorkHours = hours;
-        }
+        //public void SetWorkHours(int hours)
+        //{
+        //    this.WorkHours = hours;
+        //}
 
        
 
