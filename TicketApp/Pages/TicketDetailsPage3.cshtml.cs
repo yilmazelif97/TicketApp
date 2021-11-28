@@ -114,6 +114,8 @@ namespace TicketApp.Pages
 
             TicketInput.status = StatusofTask.Readyforassignment;
 
+            _ticketrepository.Update(TicketInput);
+
         }
 
        

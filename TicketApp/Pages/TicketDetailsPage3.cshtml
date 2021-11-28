@@ -1,4 +1,4 @@
-﻿@page "{id}"
+﻿@page 
 @model TicketApp.Pages.TicketDetailsPage3Model
 @{
     //var id = long.Parse( (string)RouteData.Values["id"]);
@@ -50,9 +50,13 @@
 
             <p>Please select priority of task</p>
 
+
+                
+            @Html.HiddenFor(x => x.ID, ViewData["Id"])
+
             @foreach (var item in Enum.GetValues(typeof(Models.LevelofDificulty )) )
             {
-                @Html.RadioButtonFor(m => m.DifficultlyLevel, item) @item
+                @Html.RadioButtonFor(m => m.DifficultlyLevel, item) @item.ToString()
             }
 
             
@@ -61,7 +65,7 @@
 
             @foreach (var item in Enum.GetValues(typeof(Models.Priortiy )) )
             {
-                @Html.RadioButtonFor(m => m.priority, item) @item
+                @Html.RadioButtonFor(m => m.priority, item) @item.ToString()
             }
 
              <input type="submit" value="Seçimi Onayla" asp-page-handler="SetDifficultLevelandPriority">

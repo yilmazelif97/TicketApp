@@ -115,13 +115,8 @@ namespace TicketApp.Services
                     }
                 }
 
-                if (emp.WorkHours > 160)
+                if (emp.WorkHours > 160 || item.OpenDate > DateTime.Now.Date)
                 {
-                    if (item.OpenDate > DateTime.Now.Date)
-                    {
-                        throw new Exception("You can not assign task to this employee. Already has 3 Hard Task in ONE month");
-                    }
-
 
                     throw new Exception("You can not assign task to this employee. His/Her Work hours is full");
 
