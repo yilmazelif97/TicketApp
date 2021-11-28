@@ -130,7 +130,7 @@ namespace TicketApp.Pages
             TicketInput.AssignedDate = DateTime.Now.Date;
 
 
-            _ticketservice.UpdateTicketEmployeeid(TicketInput, id);          
+            _ticketservice.UpdateTicketEmployeeid(TicketInput, id);      // ticketa employee id atamasý yaptý     
 
             _ticketservice.AssignTask(ticket:TicketInput , empid: EmployeeInput.Id, employee:EmployeeInput);
 

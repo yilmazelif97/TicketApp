@@ -26,25 +26,31 @@
 
             @for (int i = 0; i < Model.OpenTickets.Count; i++)
             {
-            <tr>
-                <td>
-                    <input asp-for="OpenTickets[i].Subject " type="text" placeholder="Subject" />
-                </td>
-                <td>
-                    <input asp-for="OpenTickets[i].Description" placeholder="Description" />
-                </td>
-                 <td>
-                    <input asp-for="OpenTickets[i].CustomerId" placeholder="Description" />
-                </td>
-                <td>
-                    <input asp-for="OpenTickets[i].ReviewDate " placeholder="Date of Created" />
-                </td>
+                <tr>
+                    <td>
+                        <input asp-for="OpenTickets[i].Subject " type="text" placeholder="Subject" />
+                    </td>
+                    <td>
+                        <input asp-for="OpenTickets[i].Description" placeholder="Description" />
+                    </td>
+                     <td>
+                        <input asp-for="OpenTickets[i].CustomerId" placeholder="Description" />
+                    </td>
+                    <td>
+                        <input asp-for="OpenTickets[i].ReviewDate " placeholder="Date of Created" />
+                    </td>
 
-                 <td>
-                    <button type="submit" asp-route-id="@Model.OpenTickets[i].Id" asp-page-handler="CloseTask"> Close task </button>
-                 </td>
+                    <td>
+                        <input type="submit" value="CloseTask" asp-route-id="@Model.OpenTickets[i].Id" asp-page-handler="CloseTask"> Close task />
 
-            </tr>
+                        <input
+
+
+                    </td>
+
+
+
+                </tr>
 
 
             }

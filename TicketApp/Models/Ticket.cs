@@ -43,6 +43,8 @@ namespace TicketApp.Models
     public class Ticket
     {
 
+        //Ticket Entity 
+
         public string Id { get;  set; } = Guid.NewGuid().ToString();
         public StatusofTask status { get;  set; } 
         public Priortiy Priortiy { get;  set; }
@@ -64,20 +66,20 @@ namespace TicketApp.Models
 
 
 
-        public void SetPriority(Priortiy p)
-        {
-            Priortiy = p;
-        }
+        //public void SetPriority(Priortiy p)
+        //{
+        //    Priortiy = p;
+        //}
 
-        public void SetDifficulty(LevelofDificulty l)
-        {
-            LevelofDificulty = l;
-        }
+        //public void SetDifficulty(LevelofDificulty l)
+        //{
+        //    LevelofDificulty = l;
+        //}
 
-        public void setClosedDate()
-        {
+        //public void setClosedDate()
+        //{
 
-        }
+        //}
 
 
         

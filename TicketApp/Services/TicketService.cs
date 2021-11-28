@@ -19,6 +19,7 @@ namespace TicketApp.Services
         }
 
         
+        //creating new ticket in DB with using repository AddTicke tmethod
         public void CreateTicket(Ticket ticket)
         {
 
@@ -146,10 +147,10 @@ namespace TicketApp.Services
 
         }
 
+        int workhour;
         public void SetWorkHours(Employee employee, Ticket ticket) 
         { 
 
-            int workhour;
 
             if ((int)ticket.Priortiy ==5 )
             {
@@ -173,7 +174,7 @@ namespace TicketApp.Services
                 workhour = 8 * 1;
             }
 
-            workhour = employee.WorkHours;
+            employee.WorkHours = workhour;
 
             _employeeRepository.Update(employee);
 

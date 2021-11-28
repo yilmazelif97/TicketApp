@@ -8,11 +8,13 @@ namespace TicketApp.Models
     public class Employee
     {
 
+        //Employee Entity
+
         public string Id { get;  set; }
-        public string Name { get; private set; }
-        public string Mail { get; private  set; }
+        public string Name { get;  set; }
+        public string Mail { get;   set; }
         public List<Ticket> Ticket  { get; set; }
-        public int WorkHours { get; private set; }
+        public int WorkHours { get;  set; }
 
         public Employee(string name, string mail)
         {

@@ -9,6 +9,7 @@ namespace TicketApp.Models
     public class TicketDbContext : DbContext
     {
 
+        //For reach to DB 
         public TicketDbContext()
         {
 
@@ -22,7 +23,7 @@ namespace TicketApp.Models
         }
 
 
-
+        //Creating table of entity in DB
         public DbSet<Customer> Customer {get;set;}
         public DbSet<Employee>  Employee { get; set; }
         public DbSet<Manager> Manager { get; set; }

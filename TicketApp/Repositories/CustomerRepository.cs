@@ -6,6 +6,8 @@ using TicketApp.Models;
 
 namespace TicketApp.Repositories
 {
+
+    //Controlling customer table in DB 
     public class CustomerRepository
     {
         private readonly TicketDbContext _db;
@@ -14,7 +16,7 @@ namespace TicketApp.Repositories
             _db = new TicketDbContext();
         }
         
-
+        //find specific data from customer table
         public Customer Find(string id)
         {
             return _db.Customer.Find(id);
@@ -27,7 +29,7 @@ namespace TicketApp.Repositories
 
 
       
-
+        //getting all customer of db 
         public List<Customer> GetAll()
         {
             return _db.Customer.ToList();

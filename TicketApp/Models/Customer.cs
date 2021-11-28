@@ -8,9 +8,11 @@ namespace TicketApp.Models
     public class Customer
     {
 
+        //Customer Entity
+
         public string ID { get;  set; }
-        public string Name { get;private  set; }
-        public string Mail { get;private set; }
+        public string Name { get;  set; }
+        public string Mail { get; set; }
 
         public Customer(string name, string mail)
         {

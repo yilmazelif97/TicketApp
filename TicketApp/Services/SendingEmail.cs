@@ -9,6 +9,8 @@ namespace TicketApp.Services
 {
     public class SendingEmail
     {
+
+        //using for sending email between from and to 
         public void SendEmail(string from, string to, string message, string subject)
         {
             MailMessage msg = new MailMessage();
