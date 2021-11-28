@@ -51,7 +51,7 @@ namespace TicketApp.Pages
 
 
         //Db'den customer verilerini alýyor, selectedlisitem framework tarafýndan saðlanýyor 
-        public async Task OnGet()
+        public void OnGet()
         {
              var Customers = _customerRepository.GetAll();
 
@@ -84,14 +84,14 @@ namespace TicketApp.Pages
 
                     var result = _ticketrepository.FindbyID(TicketInput.Id);
 
-                    var customermail = _customerRepository.Find(selectedcustomerid.ToString());
+                   // var customermail = _customerRepository.Find(selectedcustomerid.ToString());
 
 
                 if (result != null)
                     {
                         ViewData["Message"] = "Kayýt Baþarýlýdýr";
 
-                        _semdingmail.SendEmail(from:"elifyilmaz587@gmail.com", to:customermail.Mail, message:$"{TicketInput.Id} nolu Task Açýlmýþtýr", subject: "Ticket ID");
+                    //    _semdingmail.SendEmail(from:"elifyilmaz587@gmail.com", to:customermail.Mail, message:$"{TicketInput.Id} nolu Task Açýlmýþtýr", subject: "Ticket ID");
 
 
                     }

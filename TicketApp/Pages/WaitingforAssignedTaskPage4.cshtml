@@ -1,0 +1,75 @@
+﻿@page
+@model TicketApp.Pages.WaitingforAssignedTaskPage4Model
+@{
+}
+
+
+
+<form method="post">
+    
+
+
+
+    <table border="1" width="100%">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @* form içerisinden birden fazla veri gönderdiğimizde index mekanizmasını kullanırız. bu sebep ile foreach yerine for kullandık *@
+
+        
+
+            @for (int i = 0; i < Model.OpenTickets.Count; i++)
+            {
+            <tr>
+
+               
+                <td>
+                    <input asp-for="OpenTickets[i].Subject " type="text" placeholder="Subject" />
+                </td>
+                <td>
+                    <input asp-for="OpenTickets[i].Description" placeholder="Description" />
+                </td>
+                <td>
+                    <input asp-for="OpenTickets[i].LevelofDificulty " placeholder="Difficulty Level" />
+                </td>
+                 <td>
+                    <input asp-for="OpenTickets[i].Priortiy " placeholder="Priortiy Rank" />
+                </td>
+               
+                
+                 <td>
+                    <label>Select Customer </label>
+
+                   @* Seçtiğim employee yi o ticketin employeeidsine atıyorum. arka tarafta ticketin employe idsini stringde tutup emnoloye
+                    repositoryde o stringi aratıp employeyi alıp onun tivketine bun tickeit ekleyebilrim*@
+
+                        @Html.DropDownListFor(x=>x.ID , Model.SelectListItems ) @*@Model.OpenTickets[i].Id*@
+
+
+                        <input type="submit" value="Save" asp-page-handler="Save" asp-route-id="@Model.OpenTickets[i].Id" />
+
+                       @*  <select asp-for="OpenTickets[i].EmployeeID" asp-items="Model.SelectListItems" onchange="Save" >
+                         </select>*@
+
+                        @*< asp-route-id="@Model.OpenTickets[i].Id "> </>*@
+                          
+                </td>
+                
+
+               
+            </tr>
+
+
+            }
+
+            
+
+
+        </tbody>
+    </table>
+    </form>

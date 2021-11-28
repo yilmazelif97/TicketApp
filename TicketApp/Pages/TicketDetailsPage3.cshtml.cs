@@ -95,22 +95,20 @@ namespace TicketApp.Pages
         }
 
 
-        public void OnPostSetDifficultLevelandPriority(string id, Priortiy p, LevelofDificulty l)
+        public void OnPostSetDifficultLevelandPriority(string id)
         {
 
             
 
             ID = id;
 
-            priority = p;
-            DifficultlyLevel = l;
 
 
             TicketInput = _ticketrepository.FindbyID(id);
 
-            _ticketservice.SetPriority(TicketInput,p);  //Update priority of task
+            _ticketservice.SetPriority(TicketInput,priority);  //Update priority of task
 
-            _ticketservice.SetDifficulty(TicketInput,l);  //Update difficulty of task
+            _ticketservice.SetDifficulty(TicketInput,DifficultlyLevel);  //Update difficulty of task
 
             TicketInput.status = StatusofTask.Readyforassignment;
 
