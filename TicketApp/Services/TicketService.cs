@@ -63,12 +63,12 @@ namespace TicketApp.Services
             var emp = _employeeRepository.Find(empid);
 
            
-            if (((int)ticket.Priortiy) == 0 )
+            if (((ticket.LevelofDificulty) == default(LevelofDificulty)))
             {
                 throw new Exception("You should select priority before assign task to employee");
             }
 
-            if (((int)ticket.LevelofDificulty) == 0 )
+            if ((ticket.LevelofDificulty) == default (LevelofDificulty) )
             {
                 throw new Exception("You should select dificulty level before assign tasK to employee");
             }
@@ -80,23 +80,34 @@ namespace TicketApp.Services
 
             foreach (var item in emp.Ticket)
             {
-                if ( item.LevelofDificulty == LevelofDificulty.Hard  )
+                if ( item.LevelofDificulty == LevelofDificulty.Hard )
                 {
                  
                     count += 1;
 
-                    if (count==3)
+
+                    if (count==3 )
                     {
                         throw new Exception("You can not assign task to this employee. Already has 3 Hard Task");
                     }
 
-                  
+                    if (item.OpenDate > DateTime.Now.Date)
+                    {
+                        throw new Exception("You can not assign task to this employee. Already has 3 Hard Task in ONE month");
+                    }
+
+
 
                 }
 
                 if (item.Priortiy == Priortiy.Four || item.Priortiy == Priortiy.Five)
                 {
                     count2 += 1;
+
+                    if (item.OpenDate > DateTime.Now.Date)
+                    {
+                        throw new Exception("You can not assign task to this employee. Already has 3 Hard Task in ONE month");
+                    }
 
                     if (count2==5)
                     {
@@ -106,6 +117,12 @@ namespace TicketApp.Services
 
                 if (emp.WorkHours > 160)
                 {
+                    if (item.OpenDate > DateTime.Now.Date)
+                    {
+                        throw new Exception("You can not assign task to this employee. Already has 3 Hard Task in ONE month");
+                    }
+
+
                     throw new Exception("You can not assign task to this employee. His/Her Work hours is full");
 
 

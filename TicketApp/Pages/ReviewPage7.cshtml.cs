@@ -90,8 +90,13 @@ namespace TicketApp.Pages
 
             TicketInput = _ticketrepository.FindbyID(id);
 
-
             _ticketservice.CloseTask(ticket: TicketInput);
+
+            var employeemail = _employerepository.Find(TicketInput.CustomerId);
+
+            
+            
+            _semdingmail.SendEmail(from:employeemail.Mail , to: "elif@gmail.com", message:$"{TicketInput.Id} nolu Task Closed Task olarak atanmýþtýr" , subject: TicketInput.Subject);
         }
 
     }

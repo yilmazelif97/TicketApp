@@ -91,7 +91,7 @@ namespace TicketApp.Pages
                     {
                         ViewData["Message"] = "Kayýt Baþarýlýdýr";
 
-                        _semdingmail.SendEmail(from:"elifyilmaz587@gmail.com", to:customermail.Mail, message:$"{TicketInput.Id}", subject: "Ticket ID");
+                        _semdingmail.SendEmail(from:"elifyilmaz587@gmail.com", to:customermail.Mail, message:$"{TicketInput.Id} nolu Task Açýlmýþtýr", subject: "Ticket ID");
 
 
                     }

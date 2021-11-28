@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using System.Linq;
 using TicketApp.Models;
 using TicketApp.Repositories;
 using TicketApp.Services;
@@ -56,10 +57,6 @@ namespace TicketApp.Pages
         }
 
 
-
-
-
-
         public void OnGet()
         {
 
@@ -72,9 +69,13 @@ namespace TicketApp.Pages
                     if (item.status == StatusofTask.Open)
                     {
                         OpenTickets.Add(item);
+                        
                     }
                 }
             }
+
+            OpenTickets.OrderByDescending(x => x.OpenDate).ToList();
+
 
            
         }
