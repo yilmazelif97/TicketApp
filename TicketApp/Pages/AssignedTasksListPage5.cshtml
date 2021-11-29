@@ -13,7 +13,10 @@
             <tr>
                 <th>Subject</th>
                 <th>Description</th>
-                <th>Date</th>
+                <th>ID</th>
+                <th>AssignedDate</th>
+                <th>Name</th>
+
             </tr>
         </thead>
         <tbody>
@@ -23,6 +26,7 @@
 
             @for (int i = 0; i < Model.OpenTickets.Count; i++)
             {
+
             <tr>
                 <td>
                     <input asp-for="OpenTickets[i].Subject " type="text" placeholder="Subject" />
@@ -31,11 +35,14 @@
                     <input asp-for="OpenTickets[i].Description" placeholder="Description" />
                 </td>
                 <td>
-                    <input asp-for="OpenTickets[i].CustomerId " placeholder="Difficulty Level" />
+                    <input asp-for="OpenTickets[i].Id " placeholder="Difficulty Level" />
                 </td>
                  <td>
                     <input asp-for="OpenTickets[i].AssignedDate " placeholder="Difficulty Level" />
                 </td>
+                 <td>
+                     <input asp-for="EmployeeList[i].Name " placeholder="Difficulty Level" />
+                 </td>
 
                  <td>
                     <input type="submit" value="CloseTask" asp-route-id="@Model.OpenTickets[i].Id" asp-page-handler="CloseTask"> Close task />

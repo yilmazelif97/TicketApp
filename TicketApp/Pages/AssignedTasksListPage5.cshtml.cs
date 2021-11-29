@@ -43,6 +43,9 @@ namespace TicketApp.Pages
         public List<Ticket> OpenTickets { get; set; }
 
         [BindProperty]
+        public List<Employee> EmployeeList { get; set; } = new List<Employee>();
+
+        [BindProperty]
         public string ID { get; set; }
 
 
@@ -66,6 +69,8 @@ namespace TicketApp.Pages
         {
             Tickets = _ticketrepository.Get();
 
+            var employee = _employerepository.GetAll();
+
             if (Tickets.Count != 0)
             {
                 foreach (var item in Tickets)
@@ -73,6 +78,14 @@ namespace TicketApp.Pages
                     if (item.status == StatusofTask.Assigned)
                     {
                         OpenTickets.Add(item);
+
+                        foreach (var item2 in employee)
+                        {
+                            if (item.EmployeeID == item2.Id)
+                            {
+                                EmployeeList.Add(item2);
+                            }
+                        }
                     }
                 }
             }

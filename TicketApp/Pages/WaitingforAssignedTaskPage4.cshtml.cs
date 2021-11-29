@@ -115,11 +115,11 @@ namespace TicketApp.Pages
 
             TicketInput = _ticketrepository.FindbyID(ticketid);
 
-            //var emp = _ticketrepository.FindbyID(id).EmployeeID; 
 
             EmployeeInput = _employerepository.Find(id);
 
             TicketInput.AssignedDate = DateTime.Now.Date;
+
             TicketInput.status = StatusofTask.Assigned;
 
 
@@ -129,7 +129,8 @@ namespace TicketApp.Pages
 
             _ticketservice.SetWorkHours(employee: EmployeeInput, ticket: TicketInput);
 
-            
+
+
 
 
 
