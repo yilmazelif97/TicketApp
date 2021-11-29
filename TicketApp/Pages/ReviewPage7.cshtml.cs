@@ -67,6 +67,7 @@ namespace TicketApp.Pages
         }
 
 
+        //When page is  uploaded, automatically Review tasks are filling with OnGet() function
 
         public void OnGet()
         {
@@ -85,6 +86,7 @@ namespace TicketApp.Pages
             }
         }
 
+        //Method is using for updating status of ticket as a closed. 
         public void OnPostCloseTask(string id)
         {
 

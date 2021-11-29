@@ -16,6 +16,7 @@ namespace TicketApp.Repositories
             _db = new TicketDbContext();
         }
 
+        //Finding manager by id
         public Manager Find(string id)
         {
             return _db.Manager.Find(id);

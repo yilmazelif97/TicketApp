@@ -64,6 +64,7 @@ namespace TicketApp.Pages
         }
 
 
+        //When page is  uploaded, automatically Assigned tasks and their employees are filling with OnGet() function
 
         public void OnGet()
         {
@@ -92,6 +93,9 @@ namespace TicketApp.Pages
 
 
         }
+
+        
+        //Taking id that sended from frontend, find that id in ticket table in DB then call CloseTask() function which is changed status of task
 
         public void OnPostCloseTask(string id)
         {

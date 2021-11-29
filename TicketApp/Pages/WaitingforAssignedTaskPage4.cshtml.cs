@@ -10,6 +10,9 @@ using TicketApp.Services;
 
 namespace TicketApp.Pages
 {
+
+    //In there, assigning task to employee is running
+
     public class WaitingforAssignedTaskPage4Model : PageModel
     {
 
@@ -71,6 +74,7 @@ namespace TicketApp.Pages
 
         }
 
+        //When page is  uploaded, automatically ReadyforAssignment tasks and employee dropdownlist are filling with OnGet() function
 
 
         public void OnGet()
@@ -103,7 +107,7 @@ namespace TicketApp.Pages
 
         }
 
-        //Assigned iþþemini yapýyor employe ye sonra save ediyor.
+        //With this method assigning process is doing. at the same time updating employeeid of ticket and updating employees work hours are doing
         public void OnPostSave(string id, string ticketid)
         {
 

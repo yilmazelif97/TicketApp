@@ -14,6 +14,7 @@ namespace TicketApp.Pages
     public class ClosedTaskModel : PageModel
     {
 
+        //There is functions for updating status of tasks as a complete or review
 
         private readonly TicketService _ticketservice;
         private readonly EmployeeService _employeeservice;
@@ -67,6 +68,8 @@ namespace TicketApp.Pages
 
         }
 
+        //When page is  uploaded, automatically Cloesd tasks are filling with OnGet() function
+
 
         public void OnGet()
         {
@@ -84,6 +87,8 @@ namespace TicketApp.Pages
             }
 
         }
+
+        //Find sended id in ticket table in DB and update status of task as Reviewed and send information mail to assigned employee to this task
 
         public void OnPostReviewTask(string id)
         {
@@ -104,6 +109,8 @@ namespace TicketApp.Pages
 
 
         }
+
+        //Find sended id in ticket table in DB and update status of task as Complete and send information mail to assigned Customer to this task
 
         public void OnPostCompleteTask(string id)
         {

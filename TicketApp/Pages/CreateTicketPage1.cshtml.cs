@@ -11,6 +11,8 @@ using TicketApp.Services;
 
 namespace TicketApp.Pages
 {
+    //in there, creating a new ticket and showing customers in dropdownlist
+
     public class OpenTicketsModel : PageModel
     {
 
@@ -66,6 +68,7 @@ namespace TicketApp.Pages
 
         }
 
+        //Creating ticket and sending information mail to customer that include task is opened message
 
         public void OnPostCreateTicket()
         {

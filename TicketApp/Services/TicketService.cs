@@ -20,7 +20,7 @@ namespace TicketApp.Services
         }
 
         
-        //creating new ticket in DB with using repository AddTicke tmethod
+        //creating new ticket in DB with using repository AddTicket method
         public void CreateTicket(Ticket ticket)
         {
 
@@ -30,6 +30,7 @@ namespace TicketApp.Services
             }
 
          
+            //controlling description or subject of ticket is empty or not 
 
             if (string.IsNullOrEmpty(ticket.Description))
             {
@@ -48,6 +49,8 @@ namespace TicketApp.Services
 
 
         }
+
+        //Method is for changing status of ticket like closed, opened..
         public void UpdateStatusofTask(Ticket ticket, StatusofTask status)
         {
 
@@ -59,6 +62,10 @@ namespace TicketApp.Services
 
         public List<Ticket> ticketList { get; set; } = new List<Ticket>();
         public Employee emp { get; set; }
+
+
+        //Method is assign task to employee. There is some validation like counting hard and up priortiy task that employee has, if workhours of employee is bigger than 160
+        //hours. Using employee, ticket object and employee id for reach emloyee from ticket which one is assigned for ticket
 
         public void AssignTask(Ticket ticket, string empid,Employee employee)
         {
@@ -144,11 +151,15 @@ namespace TicketApp.Services
 
         }
 
+        //Updating pritority like 5,4..
         public void SetPriority(Ticket ticket, Priortiy prio)
         {
             ticket.Priortiy = prio;
             _ticketRepository.Update(ticket);
+           
         }
+
+        //Updating difficulty of task like hard, easy..
 
         public void SetDifficulty(Ticket ticket, LevelofDificulty dif)
         {
@@ -156,6 +167,8 @@ namespace TicketApp.Services
             _ticketRepository.Update(ticket);
 
         }
+
+        //Updating work hours of employee based on priority of task
 
         int workhour;
         public void SetWorkHours(Employee employee, Ticket ticket) 
@@ -190,7 +203,7 @@ namespace TicketApp.Services
 
 
         }
-
+        //Assign employee to task. it is updating employee id of task
         public void UpdateTicketEmployeeid(Ticket ticket, string id)
         {
             ticket.EmployeeID = id;
@@ -198,6 +211,7 @@ namespace TicketApp.Services
 
         }
 
+        //it updates sstatus of task as a closed
         public void CloseTask(Ticket ticket)
         {
             ticket.ClosedDate = DateTime.Now.Date;
@@ -213,6 +227,7 @@ namespace TicketApp.Services
 
         }
 
+        //it updates sstatus of task as a Review
         public void ReviewTask(Ticket ticket)
         {
             ticket.status = StatusofTask.Review;
@@ -222,6 +237,7 @@ namespace TicketApp.Services
 
         }
 
+        //it updates sstatus of task as a Complete
         public void CompleteTask(Ticket ticket)
         {
             ticket.status = StatusofTask.Completed;

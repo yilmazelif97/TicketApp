@@ -10,6 +10,8 @@ using TicketApp.Services;
 
 namespace TicketApp.Pages
 {
+
+    //There is updating difficulty and priority funcitons
     public class TicketDetailsPage3Model : PageModel
     {
         private readonly TicketService _ticketservice;
@@ -81,7 +83,7 @@ namespace TicketApp.Pages
         public LevelofDificulty DifficultlyLevel { get; set; }
 
 
-
+        //Find selected id's information in ticket table.
         public void OnGet(string id)
         {
             ID = id;
@@ -94,6 +96,8 @@ namespace TicketApp.Pages
 
         }
 
+
+        //Selected id's difficulty and priority values are changing with this function. Selected diff and priority values are coming from frontends selectedlistitem
 
         public void OnPostSetDifficultLevelandPriority(string id)
         {
