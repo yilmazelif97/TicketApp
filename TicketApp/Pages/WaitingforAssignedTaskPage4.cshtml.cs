@@ -20,6 +20,7 @@ namespace TicketApp.Pages
         private readonly EmployeeRepository _employerepository;
         private readonly CustomerRepository _customerRepository;
         private readonly SendingEmail _semdingmail;
+        private readonly ManagerRepository _managerrepository;
 
 
 
@@ -56,7 +57,7 @@ namespace TicketApp.Pages
 
 
 
-        public WaitingforAssignedTaskPage4Model(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
+        public WaitingforAssignedTaskPage4Model(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email, ManagerRepository managerrepository)
         {
             _ticketrepository = tickerrepo;
             _ticketservice = ticketservice;
@@ -64,6 +65,7 @@ namespace TicketApp.Pages
             _employerepository = emprepo;
             _customerRepository = cusrepo;
             _semdingmail = email;
+            _managerrepository = managerrepository;
 
 
 
@@ -126,6 +128,8 @@ namespace TicketApp.Pages
             _ticketservice.AssignTask(ticket: TicketInput, empid: EmployeeInput.Id, employee: EmployeeInput);
 
             _ticketservice.SetWorkHours(employee: EmployeeInput, ticket: TicketInput);
+
+            
 
 
 

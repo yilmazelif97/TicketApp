@@ -21,6 +21,7 @@ namespace TicketApp.Pages
         private readonly EmployeeRepository _employerepository;
         private readonly CustomerRepository _customerRepository;
         private readonly SendingEmail _semdingmail;
+        private readonly ManagerRepository _managerrepository;
 
 
 
@@ -51,7 +52,7 @@ namespace TicketApp.Pages
 
 
 
-        public ReviewPageModel(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
+        public ReviewPageModel(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email, ManagerRepository managerrepository)
         {
             _ticketrepository = tickerrepo;
             _ticketservice = ticketservice;
@@ -60,8 +61,9 @@ namespace TicketApp.Pages
             _customerRepository = cusrepo;
             _semdingmail = email;
 
-            OpenTickets = new List<Ticket>();
+            //OpenTickets = new List<Ticket>();
 
+            _managerrepository = managerrepository;
         }
 
 
@@ -94,9 +96,11 @@ namespace TicketApp.Pages
 
             var employeemail = _employerepository.Find(TicketInput.CustomerId);
 
-            
-            
-            _semdingmail.SendEmail(from:employeemail.Mail , to: "elif@gmail.com", message:$"{TicketInput.Id} nolu Task Closed Task olarak atanmýþtýr" , subject: TicketInput.Subject);
+            var manager = _managerrepository.Find("1");
+
+            _semdingmail.SendEmail(from: "nbuy.oglen@gmail.com", to: manager.Mail, message: $"{TicketInput.Id} nolu Task Closed", subject: "Ticket ID");
+
+          
         }
 
     }

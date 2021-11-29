@@ -40,6 +40,8 @@ namespace TicketApp
             services.AddScoped<TicketService>();
             services.AddScoped<SendingEmail>();
 
+            services.AddScoped <ManagerRepository>();
+
 
 
 

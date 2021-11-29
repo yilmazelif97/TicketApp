@@ -21,6 +21,7 @@ namespace TicketApp.Pages
         private readonly EmployeeRepository _employerepository;
         private readonly CustomerRepository _customerRepository;
         private readonly SendingEmail _semdingmail;
+        private readonly ManagerRepository _managerrepository;
 
 
 
@@ -51,7 +52,7 @@ namespace TicketApp.Pages
 
 
 
-        public ClosedTaskModel(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email)
+        public ClosedTaskModel(TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo, CustomerRepository cusrepo, SendingEmail email, ManagerRepository managerrepository)
         {
             _ticketrepository = tickerrepo;
             _ticketservice = ticketservice;
@@ -61,6 +62,8 @@ namespace TicketApp.Pages
             _semdingmail = email;
 
             OpenTickets = new List<Ticket>();
+
+            _managerrepository = managerrepository;
 
         }
 
@@ -93,7 +96,11 @@ namespace TicketApp.Pages
 
             _ticketservice.ReviewTask(ticket: TicketInput);
 
-            _semdingmail.SendEmail(from: "elif@gmail.com", to: EmployeeInput.Mail, message: $"{ TicketInput.Id} nolu Task Completed Task olarak atanmýþtýr", subject: TicketInput.Subject);
+            var manager = _managerrepository.Find("1");
+
+            _semdingmail.SendEmail(from: "nbuy.oglen@gmail.com", to: EmployeeInput.Mail, message: $"{TicketInput.Id} nolu Task Reviewed", subject: "Ticket ID");
+
+           
 
 
         }
@@ -112,8 +119,10 @@ namespace TicketApp.Pages
 
             var customer = _customerRepository.Find(TicketInput.CustomerId);
 
+            var manager = _managerrepository.Find("1");
 
-            _semdingmail.SendEmail(from: "elif@gmail.com", to: customer.Mail, message: $"{ TicketInput.Id} nolu Task Completed Task olarak atanmýþtýr", subject: TicketInput.Subject);
+
+            _semdingmail.SendEmail(from: "nbuy.oglen@gmail.com", to: customer.Mail, message: $"{TicketInput.Id} nolu Task Açýlmýþtýr", subject: "Ticket ID");
 
 
         }

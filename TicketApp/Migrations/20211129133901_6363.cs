@@ -2,7 +2,7 @@
 
 namespace TicketApp.Migrations
 {
-    public partial class _34645 : Migration
+    public partial class _6363 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -21,7 +21,7 @@ namespace TicketApp.Services
             msg.IsBodyHtml = true; //to make message body as html  
             msg.Body = message;
             smtp.Port = 587;
-            smtp.Host = "tatliyemez@gmail.com"; //for gmail host  
+            smtp.Host = "smtp.gmail.com";//for gmail host  
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential("nbuy.oglen@gmail.com", "Nbuy12345");

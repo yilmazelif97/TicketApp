@@ -20,8 +20,9 @@ namespace TicketApp.Pages
         private readonly EmployeeRepository _employerepository;
         private readonly CustomerRepository _customerRepository;
         private readonly SendingEmail _semdingmail;
+        private readonly ManagerRepository _managerrepository;
 
-        public OpenTicketsModel( TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo,CustomerRepository cusrepo, SendingEmail email)
+        public OpenTicketsModel( TicketService ticketservice, EmployeeService employeservice, TicketRepository tickerrepo, EmployeeRepository emprepo,CustomerRepository cusrepo, SendingEmail email, ManagerRepository managerrepository)
         {
             _ticketrepository = tickerrepo;
             _ticketservice = ticketservice;
@@ -29,6 +30,7 @@ namespace TicketApp.Pages
             _employerepository = emprepo;
             _customerRepository = cusrepo;
             _semdingmail = email;
+            _managerrepository = managerrepository;
         }
 
         [BindProperty]
@@ -46,6 +48,7 @@ namespace TicketApp.Pages
 
         [BindProperty]
         public string selectedcustomerid { get; set; }
+
 
 
 
@@ -71,10 +74,6 @@ namespace TicketApp.Pages
             {
 
 
-                //var ticket = new Ticket();
-
-
-
                     TicketInput.OpenDate = DateTime.Now;
                     TicketInput.status = StatusofTask.Open;
 
@@ -84,14 +83,16 @@ namespace TicketApp.Pages
 
                     var result = _ticketrepository.FindbyID(TicketInput.Id);
 
-                   // var customermail = _customerRepository.Find(selectedcustomerid.ToString());
+                    var customermail = _customerRepository.Find(TicketInput.CustomerId);
+
+                    var manager = _managerrepository.Find("02c598ac-ef7f-4216-b170-c58de90c952f");
 
 
                 if (result != null)
                     {
                         ViewData["Message"] = "Kayýt Baþarýlýdýr";
 
-                    //    _semdingmail.SendEmail(from:"elifyilmaz587@gmail.com", to:customermail.Mail, message:$"{TicketInput.Id} nolu Task Açýlmýþtýr", subject: "Ticket ID");
+                        _semdingmail.SendEmail(from: "nbuy.oglen@gmail.com", to:customermail.Mail , message:$"{TicketInput.Id} nolu Task Açýlmýþtýr", subject: "Ticket ID");
 
 
                     }

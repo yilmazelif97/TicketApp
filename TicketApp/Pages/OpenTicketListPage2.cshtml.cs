@@ -74,7 +74,7 @@ namespace TicketApp.Pages
                 }
             }
 
-            OpenTickets.OrderByDescending(x => x.OpenDate).ToList();
+             OpenTickets=OpenTickets.OrderByDescending(x => x.OpenDate).ToList();
 
 
            

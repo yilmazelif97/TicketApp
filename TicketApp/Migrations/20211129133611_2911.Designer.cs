@@ -10,8 +10,8 @@ using TicketApp.Models;
 namespace TicketApp.Migrations
 {
     [DbContext(typeof(TicketDbContext))]
-    [Migration("20211123123847_firstgmig")]
-    partial class firstgmig
+    [Migration("20211129133611_2911")]
+    partial class _2911
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,8 +61,14 @@ namespace TicketApp.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("EmployeId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("EmployeeId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Mail")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -88,13 +94,13 @@ namespace TicketApp.Migrations
                     b.Property<DateTime>("CompleteDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CustomerID")
+                    b.Property<string>("CustomerId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EmployeeId")
+                    b.Property<string>("EmployeeID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("LevelofDificulty")
@@ -117,9 +123,9 @@ namespace TicketApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("CustomerId");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("EmployeeID");
 
                     b.ToTable("Ticket");
                 });
@@ -137,11 +143,11 @@ namespace TicketApp.Migrations
                 {
                     b.HasOne("TicketApp.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerID");
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("TicketApp.Models.Employee", "Employee")
                         .WithMany("Ticket")
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeID");
 
                     b.Navigation("Customer");
 

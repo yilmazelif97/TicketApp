@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TicketApp.Migrations
 {
-    public partial class firstgmig : Migration
+    public partial class _2911 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,6 +40,8 @@ namespace TicketApp.Migrations
                 {
                     ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmployeId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -68,21 +70,21 @@ namespace TicketApp.Migrations
                     ReviewDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CompleteDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AssignedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CustomerID = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    EmployeeId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    CustomerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    EmployeeID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ticket", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ticket_Customer_CustomerID",
-                        column: x => x.CustomerID,
+                        name: "FK_Ticket_Customer_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "Customer",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Ticket_Employee_EmployeeId",
-                        column: x => x.EmployeeId,
+                        name: "FK_Ticket_Employee_EmployeeID",
+                        column: x => x.EmployeeID,
                         principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -94,14 +96,14 @@ namespace TicketApp.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ticket_CustomerID",
+                name: "IX_Ticket_CustomerId",
                 table: "Ticket",
-                column: "CustomerID");
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ticket_EmployeeId",
+                name: "IX_Ticket_EmployeeID",
                 table: "Ticket",
-                column: "EmployeeId");
+                column: "EmployeeID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -10,8 +10,8 @@ using TicketApp.Models;
 namespace TicketApp.Migrations
 {
     [DbContext(typeof(TicketDbContext))]
-    [Migration("20211128205637_346457")]
-    partial class _346457
+    [Migration("20211129133901_6363")]
+    partial class _6363
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,6 +66,9 @@ namespace TicketApp.Migrations
 
                     b.Property<string>("EmployeeId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Mail")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

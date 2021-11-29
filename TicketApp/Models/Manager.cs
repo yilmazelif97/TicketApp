@@ -15,14 +15,11 @@ namespace TicketApp.Models
         public string ID { get;  set; }
         public string Name { get;  set; }
 
+        public string Mail { get; set; }
         public string EmployeId { get; set; }
         public Employee Employee { get;  set; }
 
-        public Manager(string name)
-        {
-            ID = Guid.NewGuid().ToString();
-            Name = name;
-        }
+       
 
 
     }

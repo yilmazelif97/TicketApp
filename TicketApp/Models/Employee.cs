@@ -13,7 +13,7 @@ namespace TicketApp.Models
         public string Id { get;  set; } = Guid.NewGuid().ToString();
         public string Name { get;  set; }
         public string Mail { get;   set; }
-        public List<Ticket> Ticket  { get; set; }
+        public List<Ticket> Ticket { get; set; } = new List<Ticket>();
         public int WorkHours { get; set; } = 0;
 
 
